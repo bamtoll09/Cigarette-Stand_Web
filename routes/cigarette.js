@@ -177,6 +177,15 @@ var Cigarette = {
   "글로시리즈2블랙": 171
 };
 
+var getCigaName = function(cigaCode) {
+  for (var element in Cigarette) {
+    if (Cigarette[element] == cigaCode) {
+      return element;
+    }
+  }
+  return ‘’;
+}
+
 function Sector(x, y) {
   this.x = x;
   this.y = y;
@@ -210,13 +219,13 @@ sectors[0].set([
   [Cigarette.팔리아멘트듀얼센세이션, Cigarette.팔리아멘트수퍼슬림블루, Cigarette.뉴팔리아하이브리드수퍼슬, Cigarette.팔리아멘트하이브리드1mg]
 ]);
 sector[1].set([
-  [],
-  [],
-  [],
-  [],
-  [],
-  [],
-  []
+  [Cigarette.히츠그린징, Cigarette.히츠브론즈, -1, -1],
+  [Cigarette.히츠그린, Cigarette.히츠블루, -1, -1],
+  [Cigarette.히츠실버, Cigarette.히츠앰버, Cigarette.히츠퍼플, -1],
+  [Cigarette.말보로레드BOX, Cigarette.말보로미듐B, Cigarette.말보로골드오리지널, Cigarette.말보로실버],
+  [Cigarette.말보로아이스블라스트, Cigarette.말보로아이스블라스트원, Cigarette.말보로하이브리드5mg, Cigarette.말보로하이브리드1mg],
+  [Cigarette.팔리아멘트아쿠아5, Cigarette.팔리아멘트아쿠아3, Cigarette.팔리아멘트1mg, Cigarette.팔리아멘트하이브리드],
+  [Cigarette.팔리아멘트수퍼슬림레드, Cigarette.팔리아수퍼슬림원1mg, Cigarette.라크원, Cigarette.버지니아슬림골드]
 ]);
 
 var inputHtml = '';
@@ -248,7 +257,7 @@ router.post('/result', function(req, res) {
   for (var i=0; i<sectors.length; ++i) {
     for (var j=0; j<sectors[i].length; ++j) {
       for (var k=0; k<sectors[i].length; ++k) {
-        
+        result[sectors[i][j][k]] = req.body.getCigaName(sectors[i][j][k]);
       }
     }
   }
