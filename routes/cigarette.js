@@ -177,12 +177,81 @@ var Cigarette = {
   "글로시리즈2블랙": 171
 };
 
+function Sector(x, y) {
+  this.x = x;
+  this.y = y;
+
+  this.sector = new Array(this.x);
+  for (var i=0; i<this.x; ++i)
+  this.sector[i] = new Array(this.y);
+
+  return this.sector
+}
+
+Sector.prototype.set = function(arr) {
+  for(var i=0; i<this.x; ++i) {
+    for (var j=0; j<this.y; ++j) {
+      this.sector[i, j] = arr[i, j]
+    }
+  }
+}
+
+var sectors = new Array(7);
+sectors[0] = new Sector(2, 4);
+sectors[1] = new Sector(7, 4);
+sectors[2] = new Sector(5, 9);
+sectors[3] = new Sector(5, 9);
+sectors[4] = new Sector(6, 4);
+sectors[5] = new Sector(6, 4);
+sectors[6] = new Sector(2, 4);
+
+sectors[0].set([
+  [Cigarette.말보로징퓨전더블, Cigarette.버지니아슬림1mg, Cigarette.말보로블랙멘솔, Cigarette.말보로화이트멘솔],
+  [Cigarette.팔리아멘트듀얼센세이션, Cigarette.팔리아멘트수퍼슬림블루, Cigarette.뉴팔리아하이브리드수퍼슬, Cigarette.팔리아멘트하이브리드1mg]
+]);
+sector[1].set([
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+  []
+]);
+
 var inputHtml = '';
 var  inputItem = pug.compileFile('views/item_input.pug');
 var divider = pug.compileFile('views/divider.pug');
 
+var result = new Array(172);
+
+var getIndex = function(value) {
+  for (var element in Cigarette) {
+    if (Cigarette[element == value])
+    return element;
+  }
+  return '';
+}
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  for (var element in Cigarette) {
+    if (Cigarette[element] % 5 == 0)
+      inputHtml += divider()
+    inputHtml += inputItem({ 'cigaName': element });
+  }
+  console.log(inputHtml);
+  res.render('cigarette', { 'form': inputHtml })
+});
+
+router.post('/result', function(req, res) {
+  for (var i=0; i<sectors.length; ++i) {
+    for (var j=0; j<sectors[i].length; ++j) {
+      for (var k=0; k<sectors[i].length; ++k) {
+        
+      }
+    }
+  }
   for (var element in Cigarette) {
     if (Cigarette[element] % 5 == 0)
       inputHtml += divider()
