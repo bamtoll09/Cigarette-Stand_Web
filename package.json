@@ -1,0 +1,35 @@
+{
+  "name": "cigarette-stand",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "pug": "2.0.0-beta11"
+  },
+  "description": "For all part-timers work in convenience store",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bamtoll09/Cigarette-Stand_Web.git"
+  },
+  "keywords": [
+    "cigarette",
+    "stand",
+    "convenience",
+    "store",
+    "part-time"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bamtoll09/Cigarette-Stand_Web/issues"
+  },
+  "homepage": "https://github.com/bamtoll09/Cigarette-Stand_Web#readme"
+}
