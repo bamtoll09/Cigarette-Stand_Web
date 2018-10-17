@@ -183,7 +183,7 @@ var getCigaName = function(cigaCode) {
       return element;
     }
   }
-  return ‘’;
+  return "";
 }
 
 function Sector(x, y) {
@@ -193,16 +193,18 @@ function Sector(x, y) {
   this.sector = new Array(this.x);
   for (var i=0; i<this.x; ++i)
   this.sector[i] = new Array(this.y);
-
-  return this.sector
 }
 
 Sector.prototype.set = function(arr) {
   for(var i=0; i<this.x; ++i) {
     for (var j=0; j<this.y; ++j) {
-      this.sector[i, j] = arr[i, j]
+      this.sector[i][j] = arr[i][j]
     }
   }
+}
+
+Sector.prototype.get = function(x, y) {
+  return this.sector[x][y];
 }
 
 var sectors = new Array(7);
@@ -218,7 +220,7 @@ sectors[0].set([
   [Cigarette.말보로징퓨전더블, Cigarette.버지니아슬림1mg, Cigarette.말보로블랙멘솔, Cigarette.말보로화이트멘솔],
   [Cigarette.팔리아멘트듀얼센세이션, Cigarette.팔리아멘트수퍼슬림블루, Cigarette.뉴팔리아하이브리드수퍼슬, Cigarette.팔리아멘트하이브리드1mg]
 ]);
-sector[1].set([
+sectors[1].set([
   [Cigarette.히츠그린징, Cigarette.히츠브론즈, -1, -1],
   [Cigarette.히츠그린, Cigarette.히츠블루, -1, -1],
   [Cigarette.히츠실버, Cigarette.히츠앰버, Cigarette.히츠퍼플, -1],
@@ -227,12 +229,52 @@ sector[1].set([
   [Cigarette.팔리아멘트아쿠아5, Cigarette.팔리아멘트아쿠아3, Cigarette.팔리아멘트1mg, Cigarette.팔리아멘트하이브리드],
   [Cigarette.팔리아멘트수퍼슬림레드, Cigarette.팔리아수퍼슬림원1mg, Cigarette.라크원, Cigarette.버지니아슬림골드]
 ]);
+sectors[2].set([
+  [Cigarette.FIT매치, Cigarette.FIT스파키, Cigarette.FIT체인지, Cigarette.FIT체인지업, Cigarette.FIT체인지톡, Cigarette.FIT쿨샷, -1, -1, -1],
+  [Cigarette.에쎄로열팰리스, Cigarette.에쎄골든리프, Cigarette.에쎄골든리프1mg, Cigarette["에쎄스페셜골드0.5"], Cigarette.에쎄수명작, Cigarette.에쎄스페셜골드1mg, Cigarette.에쎄스페셜골드, -1, -1],
+  [Cigarette.더원1mg, Cigarette["더원0.5"], Cigarette["더원0.1"], Cigarette.더원체인지1mg, Cigarette.더원임팩트, Cigarette.더원체인지립톡1mg, Cigarette.보헴시가슬림핏브라운, Cigarette.보헴시가슬림핏화이트, -1],
+  [Cigarette.레종블루3mg, Cigarette.레종블랙1mg, Cigarette.레종아이스프레쏘, Cigarette.레종썬프레쏘6mg, Cigarette.레종프레쏘1mg, Cigarette.시즌, Cigarette.에쎄센스1mg, -1, -1],
+  [Cigarette.한라산, Cigarette.New라일락, Cigarette.심플, Cigarette.심플에이스5mg, Cigarette.심플비젼, Cigarette.심플에이스1mg, Cigarette.디스플러스, Cigarette.디스, -1]
+]);
+sectors[3].set([
+  [Cigarette.레종프렌치라인, Cigarette.에쎄체인지빙, Cigarette.에쎄체인지4mg, Cigarette.에쎄체인지1mg, Cigarette.에쎄체인지W1mg, Cigarette.에쎄체인지업, Cigarette.에쎄체인지린, -1, -1],
+  [Cigarette.보헴파이프스코티, Cigarette.레종휘바, Cigarette.레종프렌치블랙, Cigarette.레종프렌치요고, Cigarette.레종프렌치번, Cigarette.디스아프리카, Cigarette.디스아프리카몰라, Cigarette.디스아프리카아이스잭, -1],
+  [Cigarette.보헴시가마스터, Cigarette.보헴시가미니5mg, Cigarette.보헴시가미니1mg, Cigarette.보헴시가리브레, Cigarette.보헴시가넘버6, Cigarette.보헴시가No3, Cigarette.보헴시가넘버1, Cigarette.보헴시가쿠바나더블, Cigarette.보헴시가쿠바나1mg],
+  [Cigarette.에쎄클래식, Cigarette.에쎄프라임, Cigarette.에쎄원, Cigarette.에쎄수, Cigarette["에쎄수0.5"], Cigarette["에쎄수0.1"], Cigarette.에쎄프레쏘1mg, Cigarette.에쎄아이스, Cigarette.에쎄멘솔1mg],
+  [Cigarette.타임, Cigarette.타임Mid, Cigarette.허밍타임, Cigarette.GT아이스볼트6mg, Cigarette.다비도프클래식6mg, Cigarette.다비도프리치블루3mg, Cigarette.클라우드나인5mg, Cigarette.클라우드나인1mg, Cigarette.에쎄엣지1mg]
+]);
+sectors[4].set([
+  [Cigarette.메비우스LBS옐로우, -1, -1, -1],
+  [Cigarette.세븐스타, -1, -1, -1],
+  [Cigarette.메비우스LBS블루, Cigarette.메비우스LSS3mg, Cigarette.메비우스LSS원, -1],
+  [Cigarette.메비우스스카이블루, Cigarette.메비우스스카이블루소프트, Cigarette.메비우스윈드블루, Cigarette.메비우스수퍼슬림1mg],
+  [Cigarette.메비우스오리지널, Cigarette.메비우스옵션2퍼플, Cigarette.메비우스E스타일6, Cigarette.메비우스E스타일3],
+  [Cigarette.카멜필터, Cigarette.카멜라이트, Cigarette.카멜수퍼슬림3mg, Cigarette.카멜수퍼슬림1mg]
+]);
+sectors[5].set([
+  [Cigarette.네오스틱다크토바코플러스, Cigarette.네오스틱부스트플러스, -1, -1],
+  [Cigarette.네오스틱브라이트토바코, Cigarette.네오스틱퍼플, Cigarette.네오스틱프레시, Cigarette.네오스틱스위치new],
+  [Cigarette.던힐DTOLL6mg, Cigarette.던힐DTOLL3mg, Cigarette.던힐DTOLL1mg, Cigarette.던힐DTOLL프로스트],
+  [Cigarette.던힐스위치6mg, Cigarette.던힐스위치ONE, Cigarette.던힐파인컷마스터3mg, Cigarette.던힐파인컷캡슐스위치new],
+  [Cigarette.던힐파인컷수프림, Cigarette.던힐파인컷1mg, Cigarette.던힐파인컷프로스트1mg, Cigarette["던힐파인컷0.1"]],
+  [Cigarette.로스만SS뉴보그1mg, Cigarette.로스만SS뉴보그블루1mg, Cigarette["로스만SS뉴보그0.5"], Cigarette.로스만수퍼슬림클릭]
+]);
+sectors[6].set([
+  [Cigarette.던힐DTOLL6mg14입, Cigarette.던힐DTOLL1mg14입, Cigarette.로스만SS뉴보그프리마, Cigarette.팔리아수퍼슬림클리어1mg],
+  [Cigarette.New로스만클릭6mg, Cigarette.로스만5mg, Cigarette.로스만1mg, -1]
+]);
+
+var nonSector = new Array([
+  Cigarette.네오스틱스위치
+]);
 
 var inputHtml = '';
 var  inputItem = pug.compileFile('views/item_input.pug');
 var divider = pug.compileFile('views/divider.pug');
 
 var result = new Array(172);
+for (var i=0; i<result.length; ++i)
+  result[i] = 0
 
 var getIndex = function(value) {
   for (var element in Cigarette) {
@@ -244,20 +286,36 @@ var getIndex = function(value) {
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  for (var element in Cigarette) {
-    if (Cigarette[element] % 5 == 0)
-      inputHtml += divider()
-    inputHtml += inputItem({ 'cigaName': element });
+  // for (var element in Cigarette) {
+  //   if (Cigarette[element] % 5 == 0)
+  //     inputHtml += divider()
+  //   inputHtml += inputItem({ 'cigaName': element });
+  // }
+  // console.log(inputHtml);
+  // res.render('cigarette', { 'form': inputHtml });
+  res.setHeader("Content-Type", "text/html;charset=utf-8");
+  for (var i=0; i<sectors.length; ++i) {
+    for (var j=0; j<sectors[i].x; ++j) {
+      for (var k=0; k<sectors[i].y; ++k) {
+        if (sectors[i].get(j, k) != -1)
+          result[sectors[i].get(j, k)] = 1;
+      }
+    }
   }
-  console.log(inputHtml);
-  res.render('cigarette', { 'form': inputHtml })
+  console.log(sectors[0].length + '');
+  for (var element in Cigarette) {
+    if (result[Cigarette[element]] == 0)
+      res.write(element + "<br>");
+  }
+  res.end();
 });
 
 router.post('/result', function(req, res) {
   for (var i=0; i<sectors.length; ++i) {
     for (var j=0; j<sectors[i].length; ++j) {
       for (var k=0; k<sectors[i].length; ++k) {
-        result[sectors[i][j][k]] = req.body.getCigaName(sectors[i][j][k]);
+        if (sectors[i][j][k] != -1)
+          result[sectors[i][j][k]] = req.body.getCigaName(sectors[i][j][k]);
       }
     }
   }
