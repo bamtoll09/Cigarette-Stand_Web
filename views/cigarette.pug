@@ -1,7 +1,16 @@
 extends layout
 
 block content
-    form(action="/result", method="post")
+    form(action="/cigarette/result", method="post")
         table
-            #{form}
-        input(type="submit", value="확인")
+            -for (var i=0; i<172; ++i)
+                -var cigaName = cigaNames[i]
+                if i%5 == 0
+                    include divider.pug
+                if  show
+                    -var cigaCount = cigaCounts[i]
+                    include item_show.pug
+                else
+                    include item_input.pug
+        if show == false
+            input(type="submit", value="확인")

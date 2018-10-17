@@ -177,15 +177,6 @@ var Cigarette = {
   "글로시리즈2블랙": 171
 };
 
-var getCigaName = function(cigaCode) {
-  for (var element in Cigarette) {
-    if (Cigarette[element] == cigaCode) {
-      return element;
-    }
-  }
-  return "";
-}
-
 function Sector(x, y) {
   this.x = x;
   this.y = y;
@@ -205,6 +196,10 @@ Sector.prototype.set = function(arr) {
 
 Sector.prototype.get = function(x, y) {
   return this.sector[x][y];
+}
+
+Sector.prototype.size = function() {
+  return this.x * this.y;
 }
 
 var sectors = new Array(7);
@@ -264,68 +259,92 @@ sectors[6].set([
   [Cigarette.New로스만클릭6mg, Cigarette.로스만5mg, Cigarette.로스만1mg, -1]
 ]);
 
-var nonSector = new Array([
-  Cigarette.네오스틱스위치
-]);
+var nonSector = [
+ Cigarette.디스아프리카골라, Cigarette.네오스틱스위치, Cigarette.말보로제로애디티브,
+ Cigarette.메비우스LSSv1수퍼슬림, Cigarette.메비우스LSSv5, Cigarette.아이코스클리닝스틱,
+ Cigarette.아이코스연속패키지네이비, Cigarette.아이코스연속패키지화이트, Cigarette.아이코스키트네이비,
+ Cigarette.아이코스키트메탈릭레드, Cigarette.아이코스키트화이트, Cigarette.LIL캡레이저블루,
+ Cigarette.LIL캡밀키블루, Cigarette.LIL플러스화이트, Cigarette.글로시리즈2그레이,
+ Cigarette.글로시리즈2블랙
+];
 
-var inputHtml = '';
-var  inputItem = pug.compileFile('views/item_input.pug');
-var divider = pug.compileFile('views/divider.pug');
-
-var result = new Array(172);
-for (var i=0; i<result.length; ++i)
-  result[i] = 0
-
-var getIndex = function(value) {
-  for (var element in Cigarette) {
-    if (Cigarette[element == value])
-    return element;
-  }
-  return '';
-}
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  // for (var element in Cigarette) {
-  //   if (Cigarette[element] % 5 == 0)
-  //     inputHtml += divider()
-  //   inputHtml += inputItem({ 'cigaName': element });
-  // }
-  // console.log(inputHtml);
-  // res.render('cigarette', { 'form': inputHtml });
+var getNonSector = function(res) {
+  var ciga = new Array(172);
+  for (var i=0; i<ciga.length; ++i)
+    ciga[i] = 0;
   res.setHeader("Content-Type", "text/html;charset=utf-8");
   for (var i=0; i<sectors.length; ++i) {
     for (var j=0; j<sectors[i].x; ++j) {
       for (var k=0; k<sectors[i].y; ++k) {
         if (sectors[i].get(j, k) != -1)
-          result[sectors[i].get(j, k)] = 1;
+          ciga[sectors[i].get(j, k)] = 1;
       }
     }
   }
   console.log(sectors[0].length + '');
   for (var element in Cigarette) {
-    if (result[Cigarette[element]] == 0)
+    if (ciga[Cigarette[element]] == 0)
       res.write(element + "<br>");
   }
   res.end();
-});
+}
 
-router.post('/result', function(req, res) {
+var inputHtml = '';
+var  inputItem = pug.compileFile('views/item_input.pug');
+var divider = pug.compileFile('views/divider.pug');
+
+var cigaName = new Array();
+var cigaCount = new Array();
+
+  var getSectorsSize = function(until) {
+    var size = 0;
+    for (var i=0; i<until; ++i) {
+      size += sectors[i].size()
+    }
+    return size;
+  }
+
+var getCigaName = function(cigaCode) {
+  for (var element in Cigarette) {
+    if (Cigarette[element] == cigaCode) {
+      return element;
+    }
+  }
+  return "";
+}
+
+/* GET users listing. */
+router.get('/', function(req, res) {
+  var count = 0;
   for (var i=0; i<sectors.length; ++i) {
-    for (var j=0; j<sectors[i].length; ++j) {
-      for (var k=0; k<sectors[i].length; ++k) {
-        if (sectors[i][j][k] != -1)
-          result[sectors[i][j][k]] = req.body.getCigaName(sectors[i][j][k]);
+    for (var j=0; j<sectors[i].x; ++j) {
+      for (var k=0; k<sectors[i].y; ++k) {
+        if (sectors[i].get(j, k) == -1) continue;
+        cigaName[count] = getCigaName(sectors[i].get(j, k));
+        count++;
       }
     }
   }
-  for (var element in Cigarette) {
-    if (Cigarette[element] % 5 == 0)
-      inputHtml += divider()
-    inputHtml += inputItem({ 'cigaName': element });
+  for (var i=0; i<nonSector.length; ++i) {
+    cigaName[count] = getCigaName(nonSector[i]);
+    count++;
   }
-  console.log(inputHtml);
-  res.render('cigarette', { 'form': inputHtml })
+  console.log(count);
+  res.render('cigarette', { cigaNames: cigaName, show: false });
+
+  // getNonSector(res);
+
+  // res.setHeader("Content-Type", "text/html;charset=utf-8");
+  // res.write( inputItem({ cigaName: getCigaName(0) }));
+  // res.end();
+});
+
+router.post('/result', function(req, res) {
+  for (var element in Cigarette) {
+    cigaName[Cigarette[element]] = element;
+    cigaCount[Cigarette[element]] = req.body[element];
+  }
+  res.render('cigarette', { cigaNames: cigaName, cigaCounts: cigaCount, show: true });
 });
 
 module.exports = router;
