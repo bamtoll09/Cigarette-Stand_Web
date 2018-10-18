@@ -171,7 +171,7 @@ var Cigarette = {
   "아이코스키트화이트": 165,
   "LIL캡레이저블루": 166,
   "LIL캡밀키블루": 167,
-  "LIL플러스다크네이비": 1688,
+  "LIL플러스다크네이비": 168,
   "LIL플러스화이트": 169,
   "글로시리즈2그레이": 170,
   "글로시리즈2블랙": 171
@@ -264,7 +264,7 @@ var nonSector = [
  Cigarette.메비우스LSSv1수퍼슬림, Cigarette.메비우스LSSv5, Cigarette.아이코스클리닝스틱,
  Cigarette.아이코스연속패키지네이비, Cigarette.아이코스연속패키지화이트, Cigarette.아이코스키트네이비,
  Cigarette.아이코스키트메탈릭레드, Cigarette.아이코스키트화이트, Cigarette.LIL캡레이저블루,
- Cigarette.LIL캡밀키블루, Cigarette.LIL플러스화이트, Cigarette.글로시리즈2그레이,
+ Cigarette.LIL캡밀키블루, Cigarette.LIL플러스다크네이비, Cigarette.LIL플러스화이트, Cigarette.글로시리즈2그레이,
  Cigarette.글로시리즈2블랙
 ];
 
@@ -296,13 +296,13 @@ var divider = pug.compileFile('views/divider.pug');
 var cigaName = new Array();
 var cigaCount = new Array();
 
-  var getSectorsSize = function(until) {
-    var size = 0;
-    for (var i=0; i<until; ++i) {
-      size += sectors[i].size()
-    }
-    return size;
+var getSectorsSize = function(until) {
+  var size = 0;
+  for (var i=0; i<until; ++i) {
+    size += sectors[i].size()
   }
+  return size;
+}
 
 var getCigaName = function(cigaCode) {
   for (var element in Cigarette) {
@@ -311,6 +311,24 @@ var getCigaName = function(cigaCode) {
     }
   }
   return "";
+}
+
+var getCigaCode = function(cigaName) {
+  for (var element in Cigarette) {
+    if (element == cigaName) {
+      return Cigarette[element];
+    }
+  }
+  return "";
+}
+
+var getCigaAsPosOrder = function(arr) {
+  var array = new Array(172);
+  for (var i=0; i<arr.length; ++i) {
+    var code = getCigaCode(arr[i]);
+    array[code] = arr[i];
+  }
+  return array;
 }
 
 /* GET users listing. */
@@ -329,13 +347,16 @@ router.get('/', function(req, res) {
     cigaName[count] = getCigaName(nonSector[i]);
     count++;
   }
-  console.log(count);
+  // var asdf = getCigaAsPosOrder(cigaName);
+  // console.log(count);
   res.render('cigarette', { cigaNames: cigaName, show: false });
 
   // getNonSector(res);
 
   // res.setHeader("Content-Type", "text/html;charset=utf-8");
-  // res.write( inputItem({ cigaName: getCigaName(0) }));
+  // res.write(asdf.length + '<br>');
+  // for (var i=0; i<asdf.length; ++i)
+  //   res.write(asdf[i] + '<br>');
   // res.end();
 });
 
