@@ -10,6 +10,9 @@ var cigaRouter = require('./routes/cigarette');
 var app = express();
 
 var port = 3000;
+if (process.argv.length > 2) {
+  port = process.argv[2];
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
