@@ -9,7 +9,7 @@ window.onload = function() {
     $('.ciga').keydown(function (e) {
         console.log(e.which + '');
         if (e.which === 13) {
-            if (focusIndex == 171) return true;
+            if (focusIndex == 174) return true;
             var index = $('.ciga').index(this) + 1;
             $('.ciga').eq(index).focus();
             return false;

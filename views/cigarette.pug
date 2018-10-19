@@ -3,7 +3,7 @@ extends layout
 block content
     form(action="/cigarette/result", method="post")
         table
-            -for (var i=0; i<172; ++i)
+            -for (var i=0; i<cigaSize; ++i)
                 -var cigaName = cigaNames[i]
                 if i%5 == 0
                     include divider.pug
