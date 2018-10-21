@@ -10,8 +10,8 @@ window.onload = function() {
         console.log(e.which + '');
         if (e.which === 13) {
             if (focusIndex == 174) return true;
-            var index = $('.ciga').index(this) + 1;
-            $('.ciga').eq(index).focus();
+            var index = ++focusIndex;
+            input[focusIndex].focus();
             return false;
         }
     });
