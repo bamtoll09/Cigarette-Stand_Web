@@ -248,9 +248,9 @@ sectors[3].set([
   [Cigarette.타임, Cigarette.타임Mid, Cigarette.허밍타임, Cigarette.GT아이스볼트6mg, Cigarette.다비도프클래식6mg, Cigarette.다비도프리치블루3mg, Cigarette.클라우드나인5mg, Cigarette.클라우드나인1mg, Cigarette.에쎄엣지1mg]
 ]);
 sectors[4].set([
-  [Cigarette.메비우스LBS옐로우, -1, -1, -1],
+  [Cigarette.메비우스LBS블루, Cigarette.메비우스LBS옐로우, -1, -1],
   [Cigarette.세븐스타, -1, -1, -1],
-  [Cigarette.메비우스LBS블루, Cigarette.메비우스LSS3mg, Cigarette.메비우스LSS원, -1],
+  [Cigarette.메비우스LSSv5, Cigarette.메비우스LSS3mg, Cigarette.메비우스LSS원, -1],
   [Cigarette.메비우스스카이블루, Cigarette.메비우스스카이블루소프트, Cigarette.메비우스윈드블루, Cigarette.메비우스수퍼슬림1mg],
   [Cigarette.메비우스오리지널, Cigarette.메비우스옵션2퍼플, Cigarette.메비우스E스타일6, Cigarette.메비우스E스타일3],
   [Cigarette.카멜필터, Cigarette.카멜라이트, Cigarette.카멜수퍼슬림3mg, Cigarette.카멜수퍼슬림1mg]
@@ -270,7 +270,7 @@ sectors[6].set([
 
 var nonSector = [
  Cigarette.디스아프리카골라, Cigarette.네오스틱스위치, Cigarette.네오스틱프레쉬믹스,
- Cigarette.말보로제로애디티브, Cigarette.메비우스LSSv1수퍼슬림, Cigarette.메비우스LSSv5,
+ Cigarette.말보로제로애디티브, Cigarette.메비우스LSSv1수퍼슬림,
  Cigarette.아이코스클리닝스틱, Cigarette.아이코스연속패키지네이비, Cigarette.아이코스연속패키지화이트,
  Cigarette.아이코스키트네이비, Cigarette.아이코스키트메탈릭레드, Cigarette.아이코스키트화이트,
  Cigarette.LIL미니민트, Cigarette.LIL미니화이트, Cigarette.LIL캡레이저블루,
