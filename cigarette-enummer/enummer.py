@@ -1,5 +1,7 @@
-r = open('cigarette.txt', 'r')
-c = open('result.txt', 'w')
+import codecs
+
+r = codecs.open('cigarette.txt', 'r', 'utf-8')
+c = codecs.open('result.txt', 'w', 'utf-8')
 i = 0
 lines = r.readlines()
 
